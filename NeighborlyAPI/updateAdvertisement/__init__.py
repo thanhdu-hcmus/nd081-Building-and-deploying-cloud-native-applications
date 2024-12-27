@@ -12,9 +12,9 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         try:
             url = os.environ["MyDbConnection"]  # TODO: Update with appropriate MongoDB connection information
             client = pymongo.MongoClient(url)
-            database = client['azure']
+            database = client['neighborlydb']
             collection = database['advertisements']
-            
+
             filter_query = {'_id': ObjectId(id)}
             update_query = {"$set": eval(request)}
             rec_id1 = collection.update_one(filter_query, update_query)

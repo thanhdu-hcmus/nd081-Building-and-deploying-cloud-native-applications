@@ -12,14 +12,14 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
 
     id = req.params.get('id')
     print("--------------->", id)
-    
+
     if id:
         try:
             url = os.environ["MyDbConnection"]  # TODO: Update with appropriate MongoDB connection information
             client = pymongo.MongoClient(url)
-            database = client['azure']
+            database = client['neighborlydb']
             collection = database['advertisements']
-           
+
             query = {'_id': ObjectId(id)}
             result = collection.find_one(query)
             print("----------result--------")
